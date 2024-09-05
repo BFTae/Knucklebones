@@ -1,14 +1,15 @@
 <template>
 <div id="wrapper"><div class="column" v-for="(col,x) in grid">
     <div class="row" v-for="(row,y) in col" >
-        <div v-if="row" @click="hello(x,y)">{{ row }}</div>
-        <div style="height: 100%;width: 100%;" v-else @click="hello(x,y)"></div>
+        <div v-if="row" @click="dieHere(x,y)">{{ row }}</div>
+        <div style="height: 100%;width: 100%;" v-else @click="dieHere(x,y)"></div>
     </div>
 </div></div>
 </template>
 
 <script>
 export default{
+    emits:['put-die'],
     props:{
         grid : {
             type: Array,
@@ -20,8 +21,8 @@ export default{
         }
     },
     methods:{
-        hello(x,y){
-            console.log("siema"+this.id+x+y)
+        dieHere(x,y){
+            this.$emit('put-die',[this.id,x,y])
         }
     }
 }
