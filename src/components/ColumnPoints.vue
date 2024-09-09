@@ -17,7 +17,7 @@ export default{
 }
 </script>
 
-<style>
+<style lang="scss"> //TODO SASS
 #wrapper{
     display: flex;
     justify-content: center;

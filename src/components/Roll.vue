@@ -1,18 +1,46 @@
 <template>
-<button @click="roll()">ROLL</button>
+<button @click="roll()" v-show="enabled">ROLL</button>
+<div id="rolled"><span v-if="rolled">{{rolled}}</span></div>
 </template>
 
 <script>
 export default{
+    emits:['roll'],
+    props:{
+        enabled:{
+            type:Boolean,
+            default:true
+        },
+        id:{
+            type:Number,
+            Required:true
+        }
+    },
+    data(){
+        return{
+            rolled:0,
+        }
+    },
     methods:{
         roll(){
-            
+            this.rolled=Math.floor(Math.random()*6+1)
+            this.$emit('roll',[this.id,this.rolled])
         }
     }
-}
+    }
 </script>
 
-<style>
+<style lang="scss"> //TODO SASS
+#rolled{
+    width: 33%;
+    height: 100px;
+    float: right;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 500%;
+    border: 1px solid black;
+    background-color: darkred;
+}
 button{
     width: 64%;
     height: 100px;

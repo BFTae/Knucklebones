@@ -28,7 +28,7 @@ export default{
 }
 </script>
 
-<style>
+<style lang="scss"> //TODO SASS
 #wrapper{
     display: flex;
     align-items: center;
@@ -54,8 +54,6 @@ export default{
     font-size: 350%;
     border: solid;
     border-radius: 15px;
-    
-    
 }
 .column:hover{
     box-shadow: 0px 0px 20px white;
