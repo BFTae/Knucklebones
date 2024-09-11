@@ -1,5 +1,5 @@
 <template>
-<button @click="roll()" v-show="enabled">ROLL</button>
+<button @click="roll()">ROLL</button>
 <div id="rolled"><span v-if="rolled">{{rolled}}</span></div>
 </template>
 
@@ -23,8 +23,11 @@ export default{
     },
     methods:{
         roll(){
-            this.rolled=Math.floor(Math.random()*6+1)
-            this.$emit('roll',[this.id,this.rolled])
+            if (this.enabled){
+                this.rolled=Math.floor(Math.random()*6+1)
+                this.$emit('roll',[this.id,this.rolled])
+            }
+            
         }
     }
     }
@@ -42,7 +45,7 @@ export default{
     background-color: darkred;
 }
 button{
-    width: 64%;
+    width: 63%;
     height: 100px;
     margin-left: 7px;
     margin-bottom: 10px;
