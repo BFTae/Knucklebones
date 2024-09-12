@@ -1,16 +1,20 @@
 <template>
 <div id="layout">
-<roll :enabled="enabled0" :id="id0" @roll="reciveRoll"/>
-<br>
-<player-board :grid="grid0" :id="id0" @put-die="onPutDie"/>
-<br>
-<column-points :columns="points0"/>
-<hr>
-<column-points :columns="points1"/>
-<br>
-<player-board :grid="grid1" :id="id1" @put-die="onPutDie"/>
-<br>
-<roll :enabled="enabled1" :id="id1" @roll="reciveRoll"/>
+<div id="p0">
+    <roll :enabled="enabled0" :id="id0" @roll="reciveRoll"/>
+
+    <player-board :grid="grid0" :id="id0" @put-die="onPutDie"/>
+
+    <column-points :columns="points0"/>
+</div>
+
+<div id="p1">
+    <column-points :columns="points1"/>
+
+    <player-board :grid="grid1" :id="id1" @put-die="onPutDie"/>
+
+    <roll :enabled="enabled1" :id="id1" @roll="reciveRoll"/>
+</div>
 </div>
 </template>
 
@@ -68,8 +72,11 @@ export default{
 </script>
 
 <style lang="scss"> //TODO SASS
-
 #layout{
-    display: block;
+    width: 320px;
+    height: 100%;
+    display: grid;
+    align-content: space-between;
 }
+
 </style>

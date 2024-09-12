@@ -2,6 +2,7 @@
 <div id="wrapper">
     <div class="points" v-for="colpoints in columns">
         <span v-if="colpoints" >{{ colpoints }}</span>
+        <span v-else>&nbsp;</span>
     </div>
 </div>
 </template>
@@ -19,19 +20,14 @@ export default{
 
 <style lang="scss"> //TODO SASS
 #wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    gap: 5%;
 }
 .points{
-    background-color: rgb(211, 32, 32);
     text-align: center;
-    font-size: 400%;
-    padding: 5px;
-    width: 80px;
-    height: 80px;
-    margin: auto;
-    border: solid 4px;
+    font-size: 200%;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 </style>

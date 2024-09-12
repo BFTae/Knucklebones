@@ -1,6 +1,7 @@
 <template>
 <button @click="roll()">ROLL</button>
-<div id="rolled"><span v-if="rolled">{{rolled}}</span></div>
+<div id="rolled"><span v-if="rolled">{{rolled}}</span>
+<span v-else>&nbsp;</span></div>
 </template>
 
 <script>
@@ -35,21 +36,17 @@ export default{
 
 <style lang="scss"> //TODO SASS
 #rolled{
-    width: 33%;
-    height: 100px;
+    width: 30%;
     float: right;
     text-align: center;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 500%;
+    font-size: 270%;
     border: 1px solid black;
     background-color: darkred;
 }
 button{
-    width: 63%;
-    height: 100px;
-    margin-left: 7px;
-    margin-bottom: 10px;
-    font-size: 400%;
+    width: 60%;
+    font-size: 300%;
     background-color: rgb(252, 82, 82);
     transition: 0.3s;
     border: 0px white;

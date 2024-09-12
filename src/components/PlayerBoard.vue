@@ -2,7 +2,7 @@
 <div id="wrapper"><div class="column" v-for="(col,x) in grid">
     <div class="row" v-for="(row,y) in col" >
         <div v-if="row" @click="dieHere(x,y)">{{ row }}</div>
-        <div style="height: 100%;width: 100%;" v-else @click="dieHere(x,y)"></div>
+        <div v-else @click="dieHere(x,y)">&nbsp;</div>
     </div>
 </div></div>
 </template>
@@ -30,25 +30,20 @@ export default{
 
 <style lang="scss"> //TODO SASS
 #wrapper{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    gap: 5px;
 }
 .column{
-    padding: 20px;
+    padding: 5%;
     background-color: darkred;
     border: solid;
     border-radius: 5px;
-    margin: 5px;
     transition: 0.3s ease;
 }
 .row{
     text-align: center;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 7px;
-    width: 70px;
-    height: 70px;
     color: black;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 350%;
