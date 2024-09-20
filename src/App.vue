@@ -1,9 +1,9 @@
 <template>
 <div id="layout">
 <div id="p0">
-    <roll :enabled="enabled0" :id="id0" @roll="reciveRoll"/>
+    <roll :enabled="enabled0" :id=0 @roll="reciveRoll"/>
 
-    <player-board :grid="grid0" :id="id0" @put-die="onPutDie"/>
+    <player-board :destroy="destroy" :enabled="enabled0" :die="die" :id=0 @clear-die="clearDie" />
 
     <column-points :columns="points0"/>
 </div>
@@ -11,9 +11,9 @@
 <div id="p1">
     <column-points :columns="points1"/>
 
-    <player-board :grid="grid1" :id="id1" @put-die="onPutDie"/>
+    <player-board :destroy="destroy" :enabled="!enabled0" :die=die :id=1 @clear-die="clearDie" />
 
-    <roll :enabled="enabled1" :id="id1" @roll="reciveRoll"/>
+    <roll :enabled="!enabled0" :id=1 @roll="reciveRoll"/>
 </div>
 </div>
 </template>
@@ -22,50 +22,24 @@
 export default{
     data(){
         return{
-            grid0 : [[1,0,0],[0,1,0],[0,0,1]],
-            grid1 : [[0,1,0],[1,0,0],[0,1,0]],
             points0 : [1,0,0],
             points1 : [0,0,1],
-            id0:0,
-            id1:1,
-            enabled0:true,
-            enabled1:false,
-            die:[-1,0]
+            enabled0:true, //if the player on top is active
+            die:[-1,0], // index 0: player id
+            destroy:[0,0] // index 0: column num
         }
     },
     methods:{
-        onPutDie(pos){
-            console.log("grid"+pos[0]+" col"+pos[1]+" row"+pos[2])
-            console.log(this.die)
-            if (pos[0]==0 && this.die[0]==0){
-                if (this.grid0[pos[1]][pos[2]]!=0) console.log("A die is already here")
-                else{
-                    this.grid0[pos[1]][pos[2]]=this.die[1]
-                    this.die=[-1,0]
-                }
-            }
-            else if(pos[0]==1 && this.die[0]==1){
-                if (this.grid1[pos[1]][pos[2]]!=0) console.log("A die is already here")
-                else{
-                    this.grid1[pos[1]][pos[2]]=this.die[1]
-                    this.die=[-1,0]
-                }
-            }
-            
-        },
         reciveRoll(data){
             console.log(data[1]+' for player '+data[0])
             this.die=[data[0],data[1]]
-
-
-            if (data[0]==0) {
-                this.enabled0=false
-                this.enabled1=true
-            }
-            else {
-                this.enabled1=false
-                this.enabled0=true
-            }
+            
+        },
+        clearDie(x){
+            console.log(x)
+            this.destroy=[x,this.die[1]]
+            this.die=[-1,0]
+            this.enabled0=!this.enabled0
         }
     }
 }
@@ -78,5 +52,10 @@ export default{
     display: grid;
     align-content: space-between;
 }
-
+#p1{
+    margin-bottom: 10px;
+}
+#p0{
+    margin-top: 10px;
+}
 </style>
